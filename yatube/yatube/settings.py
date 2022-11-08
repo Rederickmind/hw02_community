@@ -58,8 +58,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # Добавлено: Искать шаблоны на уровне проекта
-        'DIRS': [TEMPLATES_DIR],        
-        'APP_DIRS': True, 
+        'DIRS': [TEMPLATES_DIR],
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -69,7 +69,7 @@ TEMPLATES = [
             ]
         },
     }
-] 
+]
 
 WSGI_APPLICATION = 'yatube.wsgi.application'
 
@@ -122,4 +122,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
