@@ -144,3 +144,7 @@ dmypy.json
 .history/
 
 .mypy_cache
+
+# Static
+/static
+static
