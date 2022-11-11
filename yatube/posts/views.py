@@ -2,9 +2,13 @@ from django.shortcuts import render, get_object_or_404
 from .models import Post, Group
 
 
+# Количество отображаемых записей на странице
+POSTS_AMOUNT = 10
+
+
 def index(request):
     """Главная страница"""
-    posts = Post.objects.order_by('-pub_date')[:10]
+    posts = Post.objects.all()[:POSTS_AMOUNT]
     context = {
         'posts': posts,
     }
@@ -13,7 +17,6 @@ def index(request):
 
 def group_posts(request, slug):
     """Получение постов нужной группы по запросу"""
-    POSTS_AMOUNT = 10
     group = get_object_or_404(Group, slug=slug)
     posts = group.posts.all()[:POSTS_AMOUNT]
     context = {
