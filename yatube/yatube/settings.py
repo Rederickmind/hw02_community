@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'posts.apps.PostsConfig',  # Добавленная запись
+    'posts.apps.PostsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,12 +52,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'yatube.urls'
 
-# Путь к директории с шаблонами вынесен в переменную:
+# Путь к директории с шаблонами:
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # Добавлено: Искать шаблоны на уровне проекта
+        # Ищем шаблоны на уровне проекта
         'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
