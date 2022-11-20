@@ -14,7 +14,7 @@ class PostAdmin(admin.ModelAdmin):
     )
     # Добавляем интерфейс для поиска по тексту постов
     search_fields = ('text',)
-    # Это позволит изменять поле group в любом посте
+    # Добавляем возможность менять поле group в любом посте
     list_editable = ('group',)
     # Добавляем возможность фильтрации по дате
     list_filter = ('pub_date',)
