@@ -17,7 +17,11 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    # импорт правил из приложения posts
+    # Импорт правил из приложения posts
     path('', include('posts.urls', namespace='posts')),
+    # Путь к админке сайта
     path('admin/', admin.site.urls),
+    # Путь к модулю регистрации и аутентификации пользователя
+    path('auth/', include('users.urls')),
+    path('auth/', include('django.contrib.auth.urls')),
 ]
