@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Group
+# from django.contrib.auth.decorators import login_required
 
 
 # Количество отображаемых записей на странице
@@ -15,6 +16,7 @@ def index(request):
     return render(request, 'posts/index.html', context)
 
 
+# @login_required
 def group_posts(request, slug):
     """Получение постов нужной группы по запросу"""
     group = get_object_or_404(Group, slug=slug)
