@@ -1,28 +1,42 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Group
-# from django.contrib.auth.decorators import login_required
-
-
-# Количество отображаемых записей на странице
-POSTS_AMOUNT = 10
+from django.core.paginator import Paginator
 
 
 def index(request):
     """Главная страница"""
-    posts = Post.objects.all()[:POSTS_AMOUNT]
+    posts = Post.objects.all()
+    # Показывать по 10 записей на странице.
+    paginator = Paginator(posts, 10)
+
+    # Из URL извлекаем номер запрошенной страницы
+    page_number = request.GET.get('page')
+
+    # Получаем набор записей для страницы с запрошенным номером
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        'posts': posts,
+        'page_obj': page_obj,
     }
+
     return render(request, 'posts/index.html', context)
 
 
-# @login_required
 def group_posts(request, slug):
     """Получение постов нужной группы по запросу"""
     group = get_object_or_404(Group, slug=slug)
-    posts = group.posts.all()[:POSTS_AMOUNT]
+    posts = group.posts.all()
+    # Показывать по 10 записей на странице.
+    paginator = Paginator(posts, 10)
+
+    # Из URL извлекаем номер запрошенной страницы
+    page_number = request.GET.get('page')
+
+    # Получаем набор записей для страницы с запрошенным номером
+    page_obj = paginator.get_page(page_number)
+
     context = {
         'group': group,
-        'posts': posts,
+        'page_obj': page_obj,
     }
     return render(request, 'posts/group_list.html', context)
