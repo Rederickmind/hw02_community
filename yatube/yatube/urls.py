@@ -24,4 +24,5 @@ urlpatterns = [
     # Путь к модулю регистрации и аутентификации пользователя
     path('auth/', include('users.urls')),
     path('auth/', include('django.contrib.auth.urls')),
+    path('about/', include('about.urls', namespace='about')),
 ]
