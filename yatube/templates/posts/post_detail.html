@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-  {% block title %} Профиль пользователя {{ user }} {% endblock %}
+  {% block title %} Пост {{post.text|truncatechars:30 }} {% endblock %}
 {% block content %}
 <div class="row">
   <aside class="col-12 col-md-3">
