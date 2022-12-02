@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Group, User
+from .forms import PostForm
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -67,3 +69,21 @@ def post_detail(request, post_id):
         'post': post
     }
     return render(request, 'posts/post_detail.html', context)
+
+
+# Функция создания нового поста
+@login_required
+def post_create(request):
+    form = PostForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            post = form.save(commit=False)
+            form.cleaned_data['text']
+            form.cleaned_data['group']
+            post.author = request.user
+            post.save()
+            return redirect('posts:profile', post.author.username)
+    context = {
+        'form': form
+    }
+    return render(request, 'posts/post_create.html', context)
