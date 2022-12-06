@@ -32,6 +32,9 @@
     <div class="container py-5">
       <p>{{ post.text }}</p>
     </div>
+    {% if post.author == user %}
+      <a class="btn btn-primary" href="{% url 'posts:post_edit' post.pk %}">редактировать запись</a>
+    {% endif %}
   </article>
 </div>
 {% endblock %}

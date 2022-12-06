@@ -87,3 +87,21 @@ def post_create(request):
         'form': form
     }
     return render(request, 'posts/post_create.html', context)
+
+
+# Функция для редактирования поста
+@login_required
+def post_edit(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    form = PostForm(request.POST, instance=post)
+    if post.author != request.user:
+        return redirect('posts:post_detail', post_id)
+    if form.is_valid():
+        form.save()
+        return redirect('posts:post_detail', post_id)
+    context = {
+        'form': PostForm(instance=post),
+        'post': post,
+        'is_edit': True
+    }
+    return render(request, 'posts/post_create.html', context)
